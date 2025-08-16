@@ -43,13 +43,15 @@ refresh();
 	printf("----------------------\n");
 	
 }*/
-int generate_apples(char *board, int *snake){
+
+int generate_apples(char *board, int *snake, int tail){
 	int apple = 0;
 	int repeat = 1;
+	
 		while(repeat == 1){
 			int found = 0;
 			apple = rand() % 199;
-			for(int i1 = 0; i1 < 10; i1++){
+			for(int i1 = 0; i1 < tail; i1++){
 				if(snake[i1] == apple){
 					found = 1;
 				}
@@ -58,8 +60,8 @@ int generate_apples(char *board, int *snake){
 			repeat = 0;
 			}
 		}
+		
 board[apple] = '0';
-
 return apple;	
 }
 
@@ -216,7 +218,7 @@ int main() {
     	   proceed(board, snake, orientation);
     	   }    
     	}*/
-    apple = generate_apples(board, snake);
+    apple = generate_apples(board, snake, tail);
     while(ch != 'e'){
     char chnow = ch;
     ch = getch();
@@ -240,7 +242,7 @@ int main() {
     	//elongateTail(board, snake, tail, ch);
     	//return 0;// Очищаем старую позицию яблока, устанавливая пробел 
     	board[apple] = ' '; // Генерируем новое яблоко и получаем его новую позицию 
-    	apple = generate_apples(board, snake); 
+    	apple = generate_apples(board, snake, tail); 
     	}
 }
 
